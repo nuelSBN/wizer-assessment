@@ -5,6 +5,7 @@ import CreateCommentModal from "../../components/modal/comment/create";
 import CreateUserModal from "../../components/modal/users/create";
 import Button from "../../components/button";
 import { CiCirclePlus } from "react-icons/ci";
+import Loader from "../../components/loader";
 
 export default function MobileLayout() {
   const { pathname } = useLocation();
@@ -13,6 +14,7 @@ export default function MobileLayout() {
     formData: commentFormData,
     setFormData: setCommentFormData,
     handleAddComment,
+    addingComment,
   } = useComments();
 
   const {
@@ -20,6 +22,7 @@ export default function MobileLayout() {
     setFormData: setUserFormData,
     addUser,
     isFormComplete,
+    addingUser,
   } = useUsers();
 
   const {
@@ -46,6 +49,11 @@ export default function MobileLayout() {
       });
     }
   };
+
+  if (addingComment || addingUser) {
+    return <Loader />;
+  }
+
   return (
     <div className="h-full w-full flex flex-col gap-4">
       <Header />
