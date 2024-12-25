@@ -1,0 +1,102 @@
+import { Outlet, useLocation } from "react-router-dom";
+import Header from "../../components/header";
+import Sidebar from "../../components/sidebar";
+import Button from "../../components/button";
+import { CiCirclePlus } from "react-icons/ci";
+import CreateUserModal from "../../components/modal/users/create";
+import { useComments, useModal, useUsers } from "../../hooks";
+import CreateCommentModal from "../../components/modal/comment/create";
+import Loader from "../../components/loader";
+import DesktopSidebar from "../../components/sidebar/desktop";
+
+export default function Desktop() {
+  const { pathname } = useLocation();
+
+  const {
+    formData: commentFormData,
+    setFormData: setCommentFormData,
+    handleAddComment,
+    addingComment,
+  } = useComments();
+
+  const {
+    formData: userFormData,
+    setFormData: setUserFormData,
+    addUser,
+    addingUser,
+    isFormComplete,
+  } = useUsers();
+
+  const {
+    closeModal: createCommentCloseModal,
+    isOpen: createCommentIsOpen,
+    modalConfig: createCommentConfig,
+    openModal: createCommentOpenModal,
+  } = useModal();
+  const {
+    closeModal: createUserCloseModal,
+    isOpen: createUserIsOpen,
+    modalConfig: createUserConfig,
+    openModal: createUserOpenModal,
+  } = useModal();
+
+  const handleNewEntry = () => {
+    if (pathname === "/") {
+      createCommentOpenModal({
+        title: "New Entry",
+      });
+    } else if (pathname === "/users") {
+      createUserOpenModal({
+        title: "New Entry",
+      });
+    }
+  };
+
+  if (addingComment || addingUser) {
+    return <Loader />;
+  }
+
+  return (
+    <div className="h-full w-full">
+      <Header />
+      <div className="flex flex-col gap-4 p-4 h-[calc(100dvh-80px)]">
+        <div className="flex items-center justify-end h-[40px]">
+          <Button
+            label="New Entry"
+            size="small"
+            onClick={handleNewEntry}
+            icon={<CiCirclePlus size={18} />}
+            iconPosition="left"
+          />
+        </div>
+        <div className="flex w-full p-4 h-[calc(100%-40px)]">
+          <DesktopSidebar />
+          <div className="bg-[#F5F5F5] w-[85%] h-full p-2">
+            <Outlet />
+          </div>
+        </div>
+      </div>
+      {createCommentConfig && (
+        <CreateCommentModal
+          isOpen={createCommentIsOpen}
+          closeModal={createCommentCloseModal}
+          modalConfig={createCommentConfig}
+          formData={commentFormData}
+          setFormData={setCommentFormData}
+          onConfirm={handleAddComment}
+        />
+      )}
+      {createUserConfig && (
+        <CreateUserModal
+          isOpen={createUserIsOpen}
+          closeModal={createUserCloseModal}
+          modalConfig={createUserConfig}
+          formData={userFormData}
+          setFormData={setUserFormData}
+          onConfirm={addUser}
+          isFormComplete={isFormComplete}
+        />
+      )}
+    </div>
+  );
+}
