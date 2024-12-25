@@ -1,13 +1,12 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Header from "../../components/header";
-import Sidebar from "../../components/sidebar";
-import Button from "../../components/button";
 import { CiCirclePlus } from "react-icons/ci";
-import CreateUserModal from "../../components/modal/users/create";
-import { useComments, useModal, useUsers } from "../../hooks";
-import CreateCommentModal from "../../components/modal/comment/create";
+import { Outlet, useLocation } from "react-router-dom";
+import Button from "../../components/button";
+import Header from "../../components/header";
 import Loader from "../../components/loader";
+import CreateCommentModal from "../../components/modal/comment/create";
+import CreateUserModal from "../../components/modal/users/create";
 import DesktopSidebar from "../../components/sidebar/desktop";
+import { useComments, useModal, useUsers } from "../../hooks";
 
 export default function Desktop() {
   const { pathname } = useLocation();

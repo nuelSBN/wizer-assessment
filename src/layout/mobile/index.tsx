@@ -1,5 +1,3 @@
-// import Header from "components/header";
-import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "../../components/header";
 import { useComments, useModal, useUsers } from "../../hooks";
@@ -15,14 +13,12 @@ export default function MobileLayout() {
     formData: commentFormData,
     setFormData: setCommentFormData,
     handleAddComment,
-    addingComment,
   } = useComments();
 
   const {
     formData: userFormData,
     setFormData: setUserFormData,
     addUser,
-    addingUser,
     isFormComplete,
   } = useUsers();
 

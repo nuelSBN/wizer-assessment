@@ -1,10 +1,9 @@
-import React from "react";
 import { FaTimes } from "react-icons/fa";
-import logo from "../../../assets/logo-dark.png";
-import { useSidebar } from "../../../context";
-import { routes } from "../../../constants/routes";
-import Navlink from "../../navlink";
 import { useLocation } from "react-router-dom";
+import logo from "../../../assets/logo-dark.png";
+import { routes } from "../../../constants/routes";
+import { useSidebar } from "../../../context";
+import Navlink from "../../navlink";
 
 export default function MobileSidebar() {
   const { isSidebarOpen, toggleSidebar } = useSidebar();

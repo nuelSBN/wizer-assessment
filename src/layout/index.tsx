@@ -1,8 +1,6 @@
-import React from "react";
 import { useScreenSize } from "../hooks";
-import Mobile from "./mobile";
 import Desktop from "./desktop";
-import MobileLayout from "./mobile";
+import { default as Mobile, default as MobileLayout } from "./mobile";
 
 export default function Layout() {
   const { isMobile, isDesktop } = useScreenSize();

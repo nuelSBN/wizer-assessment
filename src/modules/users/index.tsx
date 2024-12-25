@@ -1,4 +1,3 @@
-import React from "react";
 import UsersTable from "../../components/table/users";
 import Loader from "../../components/loader";
 import Pagination from "../../components/pagination";

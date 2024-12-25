@@ -1,5 +1,5 @@
 import { Modal } from "../..";
-import { IFormData, useComments } from "../../../../hooks";
+import { IFormData } from "../../../../hooks";
 import TextAreaField from "../../../textarea";
 import TextField from "../../../textfield";
 
